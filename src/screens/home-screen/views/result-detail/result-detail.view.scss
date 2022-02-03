@@ -1,0 +1,31 @@
+@import '../../../../../public/assets/scss/utils/vars.scss';
+
+.result-detail {
+    &__border-line {
+        padding: 0.2em 0;
+        border-top: 1px solid rgb(112, 112, 112);
+    }
+    
+    &__content {
+        width: 64vw;
+        margin: auto;
+
+        @media screen and (max-width: $smDesktopWidth) {
+            width: 84vw;
+        }
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    // чтобы текст не выходил за границу страницы
+    &__item {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__form {
+        padding-left: 1rem;
+    }
+}

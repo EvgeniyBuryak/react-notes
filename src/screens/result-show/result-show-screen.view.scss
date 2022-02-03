@@ -1,0 +1,30 @@
+.result-show-screen {
+
+    &__form {
+        margin: auto;
+        width: 70vw;
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+    }
+
+    &__nav {        
+        position: relative;
+        min-height: 6em;
+        width: 10vw;        
+        float: left;
+    }
+
+    &__link-back {
+        position: absolute;
+        outline: 1px solid rgb(179, 126, 126);
+        background: transparent;
+        border-radius: 2px;
+        padding: 10px 20px;
+        left: 10px;
+        top: 10px;
+    }
+
+    &__textarea {
+        overflow: hidden;
+    }
+}
