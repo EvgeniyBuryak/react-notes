@@ -2,6 +2,8 @@
 import React from "react";
 import ReactDom from "react-dom";
 import { BrowserRouter } from "react-router-dom";
+import configureStore from "./store/configure-store";
+import { Provider } from "react-redux";
 
 // JS
 // ...
@@ -10,9 +12,13 @@ import { BrowserRouter } from "react-router-dom";
 import '../public/assets/scss/main.scss';
 import { App } from "./App";
 
+const store = configureStore();
+
 ReactDom.render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>,
+    <Provider store={store}>
+      {/* <BrowserRouter> */}
+        <App />
+      {/* </BrowserRouter> */}
+    </Provider>,
      document.getElementById('root')
     );
