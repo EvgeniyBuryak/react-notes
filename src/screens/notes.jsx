@@ -1,23 +1,28 @@
-import React, { Component, useCallback } from "react";
+import React, { Component, useCallback, useEffect } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { addGame } from '../actions';
+import { addGame,
+         fetchNotes } from '../actions';
 
-const Note = ({ noteList }) => {
+const Note = ( props ) => {
 
     const renderItem = useCallback( note => {
         return (<li key={note.id}
                     className="list-group__item">
                 note.content
-
         </li>)
-    }, [noteList]);
+    }, [props.noteList]);
+
+    useEffect(()=>{
+        fetchNotes();
+        console.log(props.noteList);
+    });
 
     return (
         <>
-            <p>На суку, дуб зеленый!</p>
+            <p>На суку, дуб зеленый123!</p>
             <ul className="list-group" id="contact-list">
-                { noteList.map(renderItem) }
+                { props.noteList.map(renderItem) }
             </ul>
         </>
     );
@@ -47,7 +52,8 @@ function mapStateToProps(state) {
 const mapDispatchToProps= (dispatch) => ({
     actions: bindActionCreators(
         {
-            addGame
+            addGame,
+            fetchNotes
         },
         dispatch
     )
