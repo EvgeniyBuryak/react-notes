@@ -11,6 +11,8 @@ const notesReducer = (state = initialState.notes, action) => {
         }
 
         // next note ...
+
+        default: return state;
     }
 
 }
