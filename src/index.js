@@ -10,14 +10,14 @@ import { Provider } from "react-redux";
 
 // SCSS
 import '../public/assets/scss/main.scss';
-import { App } from "./App";
+import { AppWrapper } from "./App";
 
 const store = configureStore();
 
 ReactDom.render(
     <Provider store={store}>
       {/* <BrowserRouter> */}
-        <App />
+        <AppWrapper />
       {/* </BrowserRouter> */}
     </Provider>,
      document.getElementById('root')
