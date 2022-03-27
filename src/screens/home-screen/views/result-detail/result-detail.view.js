@@ -24,7 +24,7 @@ const ResultDetail = ( {result} ) => {
     return (
         <div className="result-detail result-detail__border-line">
             <div className="result-detail__content">
-                <p className="result-detail__item">{result.text}</p>
+                <p className="result-detail__item">{result.content}</p>
                 <form className="result-detail__form" onSubmit={handleFormSubmit}>
                     <Link to='/about'
                         className=""

@@ -39,8 +39,8 @@ const HomeScreen = () => {
 
     return (
         <>
-        <div className="container">         
-            <ResultsList results={results} />            
+        <div className="container">
+            <ResultsList results={results} />
         </div>
         </>
     )

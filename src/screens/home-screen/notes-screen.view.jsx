@@ -1,52 +1,28 @@
 import React, { Component, useCallback, useEffect } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import ResultList from "./views/result-list/results-list.view";
 import { addGame,
-         fetchNotes } from '../actions';
+         fetchNotes } from '../../actions';
 
 const Note = ( props ) => {
-
-    const renderItem = useCallback( note => {
-        return (<li key={note.id}
-                    className="list-group__item">
-                        
-                    ${note.content}
-                </li>
-        )
-    }, [props.noteList]);
 
     useEffect(()=>{
         const { fetchNotes } = props.actions;
 
         fetchNotes();
-
-        console.log(props);
     }, []);
 
     return (
-        <>
+        <div className="container">
             <p>На суку, дуб зеленый123!</p>
             <ul className="list-group" id="contact-list">
-                { props.noteList.map(renderItem) }
+                <ResultList results={props.noteList} />
+                {/* { props.noteList.map(renderItem) } */}
             </ul>
-        </>
+        </div>
     );
 }
-
-// class Note extends Component {
-    
-//     constructor(props) {
-//         super(props);
-//     }
-
-//     render () {
-//         return (
-//           <div>
-//             <p>На суку, дуб зеленый!</p>
-//           </div>
-//         );
-//     }
-// }
 
 function mapStateToProps(state) {
     return {

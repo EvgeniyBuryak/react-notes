@@ -18,7 +18,9 @@ const ResultList = ({ results }) => {
 
         return (
             // properties key -  avoiding slow work within browser
-            <li key={ID}>
+            // list-group__item - скопировал из другого проекта описание в css нету
+            <li key={ID}
+                className="list-group__item">
                 <ResultDetail result={note}/>
             </li>
     )}, []);
