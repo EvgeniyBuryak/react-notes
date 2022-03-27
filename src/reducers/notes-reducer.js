@@ -10,10 +10,10 @@ const notesReducer = (state = initialState.notes, action) => {
             }
         }
 
-        // case "REQUEST_GAMES":
-		// 	return {
-		// 		...state, isFetching: true
-		// 	}
+        case "REQUEST_GAMES":
+			return {
+				...state, isFetching: true
+			}
 
         case "RECEIVE_NOTES": 
 			return {

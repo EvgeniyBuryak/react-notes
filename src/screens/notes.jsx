@@ -9,14 +9,19 @@ const Note = ( props ) => {
     const renderItem = useCallback( note => {
         return (<li key={note.id}
                     className="list-group__item">
-                note.content
-        </li>)
+                        
+                    ${note.content}
+                </li>
+        )
     }, [props.noteList]);
 
     useEffect(()=>{
+        const { fetchNotes } = props.actions;
+
         fetchNotes();
-        console.log(props.noteList);
-    });
+
+        console.log(props);
+    }, []);
 
     return (
         <>

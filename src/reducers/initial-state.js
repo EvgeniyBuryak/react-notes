@@ -5,6 +5,7 @@ const initialState = {
             id: '',
             content: ''            
         },
+        isFetching: false,
 
     }
 }

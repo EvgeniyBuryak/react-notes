@@ -23,7 +23,7 @@
     else {
         result = JSON.parse(localStorage.getItem('NOTES'));
     }
-
+    
     return result;
 };
 
