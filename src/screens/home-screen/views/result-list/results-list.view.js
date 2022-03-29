@@ -1,6 +1,5 @@
 import React, { useCallback } from "react";
 import ResultDetail from "../result-detail/result-detail.view";
-import { FormCreateNote } from "../form-create-note/form-create-note.view";
 import "./results-list.view.scss";
 
 /**
@@ -29,8 +28,7 @@ const ResultList = ({ results }) => {
         <div className="result-list">
             <ul>
                 {results.map(renderNote)}
-            </ul>
-            <FormCreateNote />
+            </ul>            
         </div>
     );
 };

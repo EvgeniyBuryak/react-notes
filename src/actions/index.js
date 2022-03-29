@@ -1,7 +1,11 @@
 import { getResults } from "../api/fetch-notes.localstorage";
 
-export const addGame =           ()     => (dispatch) => {
+export const addNote =           ()     => (dispatch) => {
         dispatch({ type: "ADD_NOTE"})
+}
+
+export const handleInputChange = (id, value) => (dispatch) => {
+	dispatch({ type: "HANDLE_INPUT_CHANGE", payload: { id: id, content: value }})
 }
 
 export const requestNotes =      ()     => (dispatch) => {
