@@ -16,7 +16,8 @@ const Note = ( props ) => {
     }, []);
 
     const onInputChange = useCallback( event => {
-        const { handleInputChange } = props.actions;                
+        const { handleInputChange } = props.actions;  
+        const { noteList }          = props;
 
         /**
          * По мере как пользователь будет вводить текст, свободное пространство
@@ -38,14 +39,21 @@ const Note = ( props ) => {
         //     event.preventDefault();
         //     return;
         // }
-        // console.log(content);
-        // id с каждой новой заметкой увеличивается на одну
-        // const ID       = NOTES[NOTES.length - 1].id + 1;
+        
+        // id с каждой новой заметкой увеличивается на одну        
+        let lenght = 1; // так как первый айди стоит по умолчанию
+        
+        for (let propNote of noteList) {            
+            lenght = lenght + 1;
+            console.log(propNote.id);
+        }
+        
+        // NOTES[NOTES.length - 1].id + 1;
+        // const ID      = noteList[noteList.lenght - 1] + 1; // NaN
         
         // создаем новую заметку
         // const NEW_NOTE = { id: 1, content: TEXTAREA.value };
-
-        handleInputChange(3, content);
+        handleInputChange(lenght, content);
     });
 
     const handleSubmit = useCallback( event => {
@@ -73,7 +81,7 @@ const Note = ( props ) => {
 function mapStateToProps(state) {
     return {
         noteList : state.notes.noteList,
-        newNote:   state.notes.newNote,
+        newNote  : state.notes.newNote,        
     }
 }
 
