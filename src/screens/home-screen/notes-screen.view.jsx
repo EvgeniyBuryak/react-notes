@@ -54,6 +54,8 @@ const Note = ( props ) => {
         // создаем новую заметку
         // const NEW_NOTE = { id: 1, content: TEXTAREA.value };
         handleInputChange(lenght, content);
+
+        // event.target.value = '';
     });
 
     const handleSubmit = useCallback( event => {
@@ -62,6 +64,8 @@ const Note = ( props ) => {
 		
 		if (props.newNote.content != '') {
             
+            const text = document.querySelector('textarea');
+            text.value = '';
             addNote();
 		}
 	});
