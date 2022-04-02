@@ -1,11 +1,17 @@
 import { getResults } from "../api/fetch-notes.localstorage";
+import { saveEnterNote } from "../api/save-enter-note.localstorage";
 
 export const addNote =           ()     => (dispatch) => {
         dispatch({ type: "ADD_NOTE"})
 }
 
 export const handleInputChange = (id, value) => (dispatch) => {
-	dispatch({ type: "HANDLE_INPUT_CHANGE", payload: { id: id, content: value }})
+
+        const new_change = { id: id, content: value };
+        
+        saveEnterNote(new_change);        
+
+	dispatch({ type: "HANDLE_INPUT_CHANGE", payload: new_change })
 }
 
 export const requestNotes =      ()     => (dispatch) => {
