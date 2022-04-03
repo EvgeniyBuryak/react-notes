@@ -7,11 +7,11 @@ export const addNote =           ()     => (dispatch) => {
 
 export const handleInputChange = (id, value) => (dispatch) => {
 
-        const new_change = { id: id, content: value };
+        // const new_change = { id: id, content: value };
         
-        saveEnterNote(new_change);        
+        // saveEnterNote(new_change);        
 
-	dispatch({ type: "HANDLE_INPUT_CHANGE", payload: new_change })
+	dispatch({ type: "HANDLE_INPUT_CHANGE", payload: value })
 }
 
 export const requestNotes =      ()     => (dispatch) => {

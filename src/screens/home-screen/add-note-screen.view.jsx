@@ -35,32 +35,24 @@ const AddNote = ( props ) => {
         })
 
         const content = event.target.value;
-
-        // Если входных данных нет, останавливаем отправку формы и прерываем выполнение функции
-        // if (TEXTAREA.value == "") {
-        //     event.preventDefault();
-        //     return;
+        
+        // // id с каждой новой заметкой увеличивается на одну        
+        // let lenght = 1; // так как первый айди стоит по умолчанию
+        
+        // /** С каждой итерацией считает количество элементов, 
+        //  *  которое по итогу подсчета передадим во временный стейт redux
+        //  * */
+        // for (let propNote of noteList) {            
+        //     lenght = lenght + 1;
+        //     console.log(propNote.id);
         // }
         
-        // id с каждой новой заметкой увеличивается на одну        
-        let lenght = 1; // так как первый айди стоит по умолчанию
+        // // NOTES[NOTES.length - 1].id + 1;
+        // // const ID      = noteList[noteList.lenght - 1] + 1; // NaN
         
-        /** С каждой итерацией считает количество элементов, 
-         *  которое по итогу подсчета передадим во временный стейт redux
-         * */
-        for (let propNote of noteList) {            
-            lenght = lenght + 1;
-            console.log(propNote.id);
-        }
-        
-        // NOTES[NOTES.length - 1].id + 1;
-        // const ID      = noteList[noteList.lenght - 1] + 1; // NaN
-        
-        // создаем новую заметку
-        // const NEW_NOTE = { id: 1, content: TEXTAREA.value };
-        handleInputChange(lenght, content);
-
-        // event.target.value = '';
+        // // создаем новую заметку
+        // // const NEW_NOTE = { id: 1, content: TEXTAREA.value };
+        handleInputChange(1, content);        
     });
 
     const handleSubmit = useCallback( event => {
