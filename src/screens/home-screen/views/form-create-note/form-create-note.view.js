@@ -3,7 +3,7 @@ import React from "react";
 /**
  * Форма создания новой заметки!
  */
-const FormCreateNote = ({ addNote, handleInputChange }) => {
+const FormCreateNote = ({ addNote, onInputChange }) => {
     
     return <div className="form-create-note">
         <form>              
@@ -13,7 +13,7 @@ const FormCreateNote = ({ addNote, handleInputChange }) => {
                 type={"text"}
                 cols="60" 
                 rows="2" 
-                onChange={handleInputChange}
+                onChange={onInputChange}
                 ></textarea></p>
             <input className="btn btn--gradient" type="submit" onClick={addNote} value="save"/>
         </form>

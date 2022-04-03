@@ -5,7 +5,6 @@ import {
          Route,
          useRoutes } from "react-router-dom";
 
-import { HomeScreen } from "./screens/home-screen/home-screen.view";
 import { ResultShowScreen } from "./screens/result-show/result-show-screen.view";
 import Notes from "./screens/home-screen/notes-screen.view.jsx";
 import "./App.css";
