@@ -13,6 +13,13 @@ const Note = ( props ) => {
         const { fetchNotes } = props.actions;
 
         fetchNotes();
+
+        const enter_note = localStorage.getItem('ENTER_NOTE');
+        const textarea = document.querySelector('textarea');
+
+        if (enter_note != '') {
+            textarea.value = enter_note;
+        }
     }, []);
 
     const onInputChange = useCallback( event => {
@@ -66,9 +73,12 @@ const Note = ( props ) => {
         event.preventDefault();
 		
 		if (props.newNote.content != '') {
-            
-            const text = document.querySelector('textarea');
-            text.value = '';
+            // после отправки значения обнуляем текстовое значение в поле ввода
+            const textarea = document.querySelector('textarea');
+            textarea.value = '';
+            // также обнуляем значение в хранилище
+            localStorage.setItem('ENTER_NOTE', '');
+
             addNote();
 		}
 	});
