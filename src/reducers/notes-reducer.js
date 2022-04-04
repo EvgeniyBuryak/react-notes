@@ -14,6 +14,13 @@ const notesReducer = (state = initialState.notes, action) => {
             }
         }
 
+        case 'REMOVE_NOTE': {
+            return {
+                ...state,
+                noteList: state.noteList.filter( note => note.id !== action.payload )
+            }
+        }
+
         case 'HANDLE_INPUT_CHANGE': {
             /** 
              * id с каждой новой заметкой увеличивается на одну        

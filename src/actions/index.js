@@ -5,6 +5,10 @@ export const addNote =           ()     => (dispatch) => {
         dispatch({ type: "ADD_NOTE"})
 }
 
+export const removeNote =        (id)     => (dispatch) => {
+        dispatch({ type: "REMOVE_NOTE", payload: id })
+}
+
 export const handleInputChange = (value) => (dispatch) => {
 	dispatch({ type: "HANDLE_INPUT_CHANGE", payload: value })
 }

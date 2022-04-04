@@ -5,7 +5,7 @@ import "./results-list.view.scss";
 /**
  * Вывод списка результата
  */
-const ResultList = ({ results }) => {
+const ResultList = ({ results, onRemoveNote }) => {
     
     /**
      * Предварительно обрабатывает каждую заметку.
@@ -20,7 +20,7 @@ const ResultList = ({ results }) => {
             // list-group__item - скопировал из другого проекта описание в css нету
             <li key={ID}
                 className="list-group__item">
-                <ResultDetail result={note}/>
+                <ResultDetail note={note} onRemoveNote={onRemoveNote}/>
             </li>
     )}, []);
 
