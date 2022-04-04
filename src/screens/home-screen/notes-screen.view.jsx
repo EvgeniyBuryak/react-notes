@@ -3,9 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import ResultList from "./views/result-list/results-list.view";
 import AddNote from "./add-note-screen.view.jsx";
-import { addNote,
-         handleInputChange,
-         fetchNotes } from '../../actions';
+import { fetchNotes } from '../../actions';
 
 const Note = ( props ) => {
 
@@ -29,16 +27,13 @@ const Note = ( props ) => {
 function mapStateToProps(state) {
     return {
         noteList : state.notes.noteList,
-        newNote  : state.notes.newNote,        
     }
 }
 
 const mapDispatchToProps= (dispatch) => ({
     actions: bindActionCreators(
         {
-            addNote,
-            handleInputChange,
-            fetchNotes
+            fetchNotes,
         },
         dispatch
     )

@@ -3,8 +3,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import FormCreateNote from "./views/form-create-note/form-create-note.view";
 import { addNote,
-         handleInputChange,
-         fetchNotes } from '../../actions';
+         handleInputChange } from '../../actions';
 
 const AddNote = ( props ) => {
 
@@ -19,7 +18,6 @@ const AddNote = ( props ) => {
 
     const handleInputChange = useCallback( event => {
         const { handleInputChange } = props.actions;  
-        const { noteList }          = props;
 
         /**
          * По мере как пользователь будет вводить текст, свободное пространство
@@ -36,23 +34,7 @@ const AddNote = ( props ) => {
 
         const content = event.target.value;
         
-        // // id с каждой новой заметкой увеличивается на одну        
-        // let lenght = 1; // так как первый айди стоит по умолчанию
-        
-        // /** С каждой итерацией считает количество элементов, 
-        //  *  которое по итогу подсчета передадим во временный стейт redux
-        //  * */
-        // for (let propNote of noteList) {            
-        //     lenght = lenght + 1;
-        //     console.log(propNote.id);
-        // }
-        
-        // // NOTES[NOTES.length - 1].id + 1;
-        // // const ID      = noteList[noteList.lenght - 1] + 1; // NaN
-        
-        // // создаем новую заметку
-        // // const NEW_NOTE = { id: 1, content: TEXTAREA.value };
-        handleInputChange(1, content);        
+        handleInputChange(content);        
     });
 
     const handleSubmit = useCallback( event => {
@@ -79,7 +61,6 @@ const AddNote = ( props ) => {
 
 function mapStateToProps(state) {
     return {
-        noteList : state.notes.noteList,
         newNote  : state.notes.newNote,        
     }
 }
@@ -89,7 +70,6 @@ const mapDispatchToProps= (dispatch) => ({
         {
             addNote,
             handleInputChange,
-            fetchNotes
         },
         dispatch
     )

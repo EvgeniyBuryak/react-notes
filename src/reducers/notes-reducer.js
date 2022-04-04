@@ -15,29 +15,27 @@ const notesReducer = (state = initialState.notes, action) => {
         }
 
         case 'HANDLE_INPUT_CHANGE': {
-            // id с каждой новой заметкой увеличивается на одну        
-            let id = 1; // так как первый айди стоит по умолчанию
+            /** 
+             * id с каждой новой заметкой увеличивается на одну        
+             * так как первый айди стоит по умолчанию
+             */ 
+            let id = 1; 
             
-            /** С каждой итерацией считает количество элементов, 
-             *  которое по итогу подсчета передадим во временный стейт redux
+            /** 
+             * С каждой итерацией считает количество элементов, 
+             * которое по итогу подсчета передадим во временный state redux
              * */
-            for (let propNote of state.noteList) {            
-                id = id + 1;
-                console.log(propNote.id);
+            for (let propNote of state.noteList) {   
+                if (id <= propNote.id) {  
+                    id = propNote.id + 1;
+                }
             }
-            
-            // NOTES[NOTES.length - 1].id + 1;
-            // const ID      = noteList[noteList.lenght - 1] + 1; // NaN
-            
-            // создаем новую заметку
-            // const NEW_NOTE = { id: 1, content: TEXTAREA.value };
 
-            localStorage.setItem('ENTER_NOTE', action.payload); //({id: id, content: action.payload});
+            localStorage.setItem('ENTER_NOTE', action.payload);
 
             return {
                 ...state, newNote: {
-                    ...state.newNote, id: id, content: action.payload}
-                    // ...state.newNote, ...action.payload}
+                    ...state.newNote, id: id, content: action.payload}                    
             }
         }
 
