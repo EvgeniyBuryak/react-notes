@@ -14,19 +14,9 @@ const Note = ( props ) => {
         fetchNotes();
     }, []);
 
-    // const handleRemoveNote2 = useCallback( note_id => {
-    //     const { removeNote } = props.actions;
-
-    //     removeNote(note_id);
-    // });
-
-    const handleRemoveNote = note_id => {
+    const handleRemoveNote = useCallback( note_id => {
         
         const { removeNote } = props.actions;
-        // const { noteList } = props;
-
-        // event.preventDefault();
-        // console.log(event.target.note_id);
 
         const NOTES = JSON.parse(localStorage.getItem('NOTES'));
 
@@ -40,7 +30,7 @@ const Note = ( props ) => {
         localStorage.setItem('NOTES', JSON.stringify(NOTES));
 
         removeNote(note_id)
-    };
+    }, []);
 
     return (
         <div className="container">
