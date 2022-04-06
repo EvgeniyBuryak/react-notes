@@ -4,7 +4,7 @@
  * Вносим новую заметку в массив заметок. Снова весь массив переводим в JSON.
  * И сохраняем в хранилище.
  */
-const setResults = (new_notes) => {
+const addNote = (new_notes) => {
 
     if (localStorage.getItem('NOTES') != null) {
 
@@ -18,4 +18,4 @@ const setResults = (new_notes) => {
     }
 }
 
-export { setResults };
+export { addNote };

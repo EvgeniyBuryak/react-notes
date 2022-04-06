@@ -38,3 +38,7 @@ export const fetchNotes = () => async (dispatch) => {
                 dispatch(receiveNotesError(err));
         }
 }
+
+export const editNote     =     (newNote) => (dispatch) => {
+        dispatch({ type: "EDIT_NOTE", payload: newNote })
+}

@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useCallback } from "react";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import { useStateWithLocalStorage } from "./hooks/useStateWithLocalStorage";
 import "./result-show-screen.view.scss";
+import { editNote } from "../../actions";
 
-const ResultShowScreen = () => {
+const ResultShowScreen = ( props ) => {
     
     /** 
      * Получаем данные одной выбранной заметки из домашнего окна
@@ -16,12 +18,7 @@ const ResultShowScreen = () => {
      * Состояние для передачи текста после 
      * изменения в локальное хранилище
      * */
-    const [text, setText] = useState( from.text ?? '');
-    /** 
-     * Используем самостоятельный хук для управления состоянием 
-     * с возможностью записи в локальное хранилище
-     * */
-    const [note, setNote] = useStateWithLocalStorage(from);
+    const [text, setText] = useState( from.content ?? '');
 
     /**
      * Срабатывает при отправке формы
@@ -29,10 +26,16 @@ const ResultShowScreen = () => {
      * изменяются значения одной из зависимостей
      * [] - массив зависимостей в квадратных скобках
      */
-    const handleFormSubmit = useCallback( event => {
-        event.preventDefault();
-        setNote({ id: note.id, text: text });        
-    },[note, text]);
+    const handleFormSubmit = useCallback( () => {
+        const { noteList } = props;
+        const { editNote } = props.actions;
+
+        // Находим нужный индекс из массива заметок, чтобы перезаписать правильную заметку
+        const NOTE_ID = noteList.findIndex( note => note.id === from.id );
+        
+        console.log(`view - arr_id: ${NOTE_ID} id: ${from.id} content: ${text}`);
+        editNote({ note_id: NOTE_ID, id: from.id, content: text });    
+    }, [text]);
 
     /**
      * Во время изменения сохраняем текст в состояние
@@ -49,7 +52,7 @@ const ResultShowScreen = () => {
             }
         })
 
-    }, [note]);
+    }, [text]);
 
     /**
      * Во время первого рендера правильно отображаем поле ввода текста
@@ -68,9 +71,9 @@ const ResultShowScreen = () => {
             <div className="result-show-screen__form">
                 <form
                     className=""
-                    name="form" 
-                    method="get" 
-                    onSubmit={handleFormSubmit}
+                    // name="form" 
+                    // method="get" 
+                    // onSubmit={handleFormSubmit}
                     noValidate
                     >
                     <textarea  
@@ -79,14 +82,36 @@ const ResultShowScreen = () => {
                         type={"text"}
                         cols="60"
                         rows="2"
-                        defaultValue={note.text}
+                        defaultValue={text}
                         onChange={handleChange}
                     />
-                    <input className="btn btn--gradient" type="submit" value="Save" />
+                    <Link to="/">
+                        <input
+                            className="btn btn--gradient" 
+                            type="submit" 
+                            onClick={handleFormSubmit}
+                            value="Save" />                            
+                    </Link>
                 </form>            
             </div>
         </div>
     );
 }
 
-export { ResultShowScreen };
+function mapStateToProps(state) {
+    return {
+        noteList: state.notes.noteList,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+    actions: bindActionCreators (
+        {
+            editNote,
+        },
+        dispatch
+    )
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProps) (ResultShowScreen);

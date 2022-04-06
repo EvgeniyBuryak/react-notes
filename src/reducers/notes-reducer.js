@@ -1,12 +1,13 @@
 import initialState from "./initial-state";
-import { setResults } from "../api/set-notes.localstorage";
+import { addNote } from "../actions";
+import { changeNote } from "../api/change-note.localstorage";
 
 const notesReducer = (state = initialState.notes, action) => {
     switch(action.type) {
 
         case 'ADD_NOTE': {
             /** Сохраняем новую заметку в хранилище */
-            setResults(state.newNote);
+            addNote(state.newNote);
 
             return {
                 ...state,
@@ -57,6 +58,27 @@ const notesReducer = (state = initialState.notes, action) => {
                 noteList: action.payload
                 // isFetching: false, 
 			}  
+
+        case "EDIT_NOTE":
+            const { note_id, id, content } = action.payload;
+
+            // Создаем копию массива
+            const arr = [...state.noteList];
+
+            // Создаем новую заметку взамен старой
+            const NEW_NOTE = {id: id, content: content}
+
+            console.log(`reducer - arr_id: ${note_id} id: ${id} content: ${content}`);
+            // Удаляем старую и записываем новую заметку
+            arr.splice(note_id, 1, NEW_NOTE);
+
+            // Вносим изменения в локальное хранилище
+            changeNote(NEW_NOTE);
+
+            return {
+                ...state,
+                noteList: arr
+            }
 
         // next note ...
 
